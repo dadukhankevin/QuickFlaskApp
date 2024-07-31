@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">Dashboard</h1>
+<p class="mb-4">Welcome, {{ username }}!</p>
+
+<form method="POST" class="max-w-md mb-4">
+    <div class="mb-4">
+        <label for="attribute_int" class="block mb-2">Integer Attribute</label>
+        <input type="number" id="attribute_int" name="attribute_int" value="{{ user.attribute_int }}" class="w-full px-3 py-2 border rounded">
+    </div>
+    <div class="mb-4">
+        <label for="attribute_str" class="block mb-2">String Attribute</label>
+        <input type="text" id="attribute_str" name="attribute_str" value="{{ user.attribute_str }}" class="w-full px-3 py-2 border rounded">
+    </div>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update Attributes</button>
+</form>
+
+<div id="clock" class="text-2xl font-bold mb-4"></div>
+
+<a href="{{ url_for('logout') }}" class="bg-red-500 text-white px-4 py-2 rounded">Logout</a>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    document.getElementById('clock').textContent = timeString;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+{% endblock %}
